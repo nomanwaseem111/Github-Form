@@ -17,7 +17,7 @@ img{
 
 form{
     width: 350px;
-    height: 250px;
+    height: 280px;
     margin: auto;
     border: 1px solid hsl(210deg 18% 87%);
     padding-left: 30px;
@@ -56,6 +56,22 @@ input{
     background-color: #216e39;
 }
 
+#btn2{
+    width: 350px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    height: 35px;
+    background-color:#34495e;
+    font-size: 14px;
+    line-height: 20px;
+    border: none;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    margin-left: 585px;
+    margin-top: 20px;
+    cursor: pointer;
+}
 
 
 p{
@@ -103,7 +119,20 @@ a:hover{
     text-decoration:underline;
 }
 
+#res{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 20px;
+    margin-right: 15px;
+}
+#allUserList{
+text-align: center;
+margin-top: 20px;
+font-size: 26px;
+font-weight: bold;
+}
 @media only screen and (max-width: 360px) {
+
     
     .main{
         text-align: center;
@@ -116,7 +145,7 @@ a:hover{
     }
 
     form{
-      height: 230px;
+      height: 250px;
         margin: auto;
         border: 1px solid hsl(210deg 18% 87%);
         border-radius: 5px;
@@ -160,7 +189,7 @@ a:hover{
 
 
     }
-
+ 
 
 .footer{
     text-align: center;
@@ -174,7 +203,7 @@ a:hover{
     font-family: 'Roboto', sans-serif;
     margin-right: 50px;
     font-size: 14px;
-   margin-bottom: 100px;
+   margin-bottom: -8px;
 }
 a{
     text-decoration: none;
@@ -183,4 +212,37 @@ a{
     color:#0969da;
 
 }
-  }
+
+#res{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+#btn2{
+    width: 70%;
+    padding: 5px 12px;
+    border-radius: 5px;
+    height: 35px;
+    background-color:#34495e;
+    font-size: 14px;
+    line-height: 20px;
+    border: none;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    margin-left: 57px;
+    cursor: pointer;
+    margin-bottom: 9px;
+}
+
+#allUserList{
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    }
+ 
+}
+
+

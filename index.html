@@ -12,6 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Macondo&family=Open+Sans:wght@500&family=Poppins:wght@500;600;700&family=Roboto:ital,wght@0,300;1,300&family=Work+Sans:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -22,9 +24,9 @@
 
         <h2>Sign in to GitHub</h2>
     </div>
-    <form>
+    <form onsubmit="signup(); return false">
         <p>Username or email address</p>
-        <input type="text" id="usernames" required>
+        <input type="email" id="usernames" required>
         <br>
         <br>
         <p>Password</p>
@@ -33,12 +35,56 @@
         <br>
         <br>
         <button class="btn">Sign Up</button>
-
+        <p id="res"></p>
 
     </form>
     <div class="footer">New to GitHub?<a href="">Create an account .</a></div>
+    <button onclick="getUser()" id="btn2">Get User</button>
+    <p id="allUserList"></p>
+
+    <script>
+
+        const signup = () => {
+
+            const usernames = document.querySelector('#usernames').value;
+            const password = document.querySelector('#password').value;
+
+            axios.post('https://github-form-project-server.herokuapp.com/user', {
+                "Email": usernames,
+                "Password": password
+            })
+                .then(function (response) {
+                    // console.log(response.data);
+                    document.getElementById('res').innerHTML = `${response.data}`
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
+
+        const getUser = () => {
+
+            
+
+            axios.get('https://github-form-project-server.herokuapp.com/user')
+                .then((response) => {
+                    // handle success
+                    console.log(response.data);
+                  response.data.map(eachUser => {
+                    document.getElementById('allUserList').innerHTML += `Email : ${eachUser.Email} Password : ${eachUser.Password} <br>`
+                  })
+                 
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+        }
 
 
+     
+    </script>
 </body>
 
 </html>
