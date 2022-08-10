@@ -73,6 +73,10 @@ input{
     cursor: pointer;
 }
 
+.btn2{
+    margin: auto;
+    text-align: center;
+}
 
 p{
     margin-bottom: 10px;
