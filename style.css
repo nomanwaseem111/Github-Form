@@ -235,7 +235,6 @@ a{
     color: #fff;
     outline: none;
     cursor: pointer;
-    margin-left: 57px;
     cursor: pointer;
     margin-bottom: 9px;
 }
@@ -244,6 +243,11 @@ a{
     text-align: center;
     font-size: 12px;
     font-weight: bold;
+    }
+
+    .btn2{
+        margin: auto;
+        text-align: center;
     }
  
 }
