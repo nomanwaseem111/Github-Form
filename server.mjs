@@ -3,7 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import { stringToHash,varifyHash} from "bcrypt-inzi"
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3003
 app.use(express.json())
 app.use(cors())
 
@@ -29,55 +29,52 @@ app.post('/user', (req, res) => {
       return;
      }
 
+     
+     userModel.findOne({password:body.password} , (err,data) => {
 
-     userModel.findOne({password:body.password}, (err,data) => {
+      if(!err){
+  
+         console.log("data :", data);
 
-         if(!err){
+         if(data){
+            console.log(" User is Already Exist :", data);
+            res.status(401).send({message : "User is Already Exist"})
+            return;
+        }else{
 
-             console.log("Data Saved : ", data);
 
-             if(data){
+          stringToHash(body.password).then(hashString => {
 
-              console.log(" User is Already Exist :", data );
-              res.status(401).send({message : "User is Already Exist"})
-
-             }else{
-         
               
-              stringToHash(body.password).then(hashString => {
+              let newUser = new userModel({
 
+                email : body.email.toLowerCase(),
+                password : hashString
 
-                let newUser = new userModel ({
-                  
-                  email : body.email.toLowerCase(),
-                  password : hashString
+              })
+              newUser.save((err,result) => {
+                       
+                if(!err){
+                  console.log("Data Saved in db", result);
+                  res.status(201).send({message : "User is Signup"});
+                }else{
+                  console.log("db error :" , err);
+                  res.status(500).send({message : "Internal Sever Error"})
+                }
 
-                   })
-                  newUser.save((err,result) => {
-
-                    if(!err){
-                      console.log("Data Saved :" , result);
-                      res.status(201).send({message : "User is Created"})
-                    }else{
-                      console.log(" db error ", err);
-                      res.status(500).send({message : "db error in data saved"})
-                    }
-
-                  })
- 
               })
 
-
-              
-
-             }
-
-         }else{
-            console.log("db error in query" , err);
-            res.status(500).send({message : "internal Server error"})
+          })
+          
          }
-     })
+         }else{
+        console.log("db error in query", err);
+        res.status(500).send({message : "Internal db error"})
 
+      }
+
+     })
+     
 
 
   })
