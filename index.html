@@ -58,7 +58,8 @@
              if(password !== confirmpassword){
                 console.log("Password do not Match, Please Enter Correct Email and Password");
                 document.getElementById('res').innerHTML = "Password do not Match, Please Enter Correct Email and Password"
-             }
+                return;
+            }
 
             axios.post('http://localhost:3000/user', {
                 email,
